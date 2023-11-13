@@ -3,10 +3,10 @@ import React from 'react';
 
 
 function History(props) {
-    const headers = ['A', 'B', 'Your Answer', 'Correct Answer', 'isCorrect?'];  
+    const headers = ['Title', 'Artist', 'length', 'Album', 'Year'];  
     return(
         <div> 
-            <h3>Your recent attempts</h3>        
+            <h3>Your saved Songs</h3>        
             <table id="history" > 
                 <thead>
                 <tr>

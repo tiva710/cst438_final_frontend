@@ -64,7 +64,7 @@ function Game() {
     return (
       <div className="App">
         <BrowserRouter>
-        <Link to='/'>Play Game</Link>{' | '}<Link to='/history'>History</Link>
+        <Link to='/'>Search</Link>{' | '}<Link to='/history'>Saved Songs</Link>
         <Switch>
           <Route exact path='/'>
             <Problem factors={factors} message={message} postAttempt={postAttempt} fetchProblem={fetchProblem} />

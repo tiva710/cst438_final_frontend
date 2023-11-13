@@ -28,13 +28,12 @@ function Problem(props) {
     const {a, b} = props.factors;
     return (
       <div className="App">
-       <h3>The problem is </h3>
-       <h1><span id="factora">{a}</span> x <span id="factorb">{b}</span></h1>
+       <h3>Search Spotify</h3>
 
       <table>
         <tbody>
         <tr><td>
-       <label htmlFor="attempt">Your answer</label>
+       <label htmlFor="attempt"></label>
        </td><td>
        <input type="text" name="attempt" value={attempt} 
               onChange={onChangeAttempt} />
@@ -46,7 +45,6 @@ function Problem(props) {
        <br/>
        <button id="submit" onClick={handleSubmit}>Submit</button>
        <br/>
-       <button onClick={handleNext}>Next Problem</button>
        
        <h3 id="message">{msg}</h3>
       </div>
