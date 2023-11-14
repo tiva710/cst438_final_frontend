@@ -35,7 +35,7 @@ function Problem(props) {
         <tr><td>
        <label htmlFor="attempt"></label>
        </td><td>
-       <input type="text" name="attempt" value={attempt} 
+       <input placeholder= "Search for a song, artist, or genre!" type="text" name="attempt" value={attempt} 
               onChange={onChangeAttempt} />
        </td></tr>
  
