@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import History from './History';
 import Problem from './Problem';
+import { Profile } from './Profile';
 
 function Game() {
 
@@ -64,13 +65,18 @@ function Game() {
     return (
       <div className="App">
         <BrowserRouter>
-        <Link to='/'>Search</Link>{' | '}<Link to='/history'>Saved Songs</Link>
+        <nav>
+            <Link to='/'>Search</Link>{' | '}<Link to='/profile'>Profile</Link>{' | '}<Link to='/history'>Saved Songs</Link>
+        </nav>
         <Switch>
           <Route exact path='/'>
             <Problem factors={factors} message={message} postAttempt={postAttempt} fetchProblem={fetchProblem} />
           </Route>
           <Route path='/history'>
             <History data={history}/>
+          </Route>
+          <Route path='/profile'>
+            <Profile />
           </Route>
         </Switch>
         </BrowserRouter>

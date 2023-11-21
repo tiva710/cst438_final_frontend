@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Problem.css';
 
 function Problem(props) {
  
@@ -43,7 +44,7 @@ function Problem(props) {
        </table>
        
        <br/>
-       <button id="submit" onClick={handleSubmit}>Search</button>
+       <button className="submit" onClick={handleSubmit}>Search</button>
        <br/>
        
        <h3 id="message">{msg}</h3>

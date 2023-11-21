@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Game from './Game';
+import './Login.css';
 
 function Login() {
     const[user, setUser] = useState({username:'', password:''});
@@ -46,7 +47,7 @@ function Login() {
             </table>
             
             <br/>
-            <button id="submit" onClick={login}>Login</button>
+            <button className="login" onClick={login}>Login</button>
                 </div>
         );
     }
