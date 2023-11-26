@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+nav{
+    background-color: #121212;
+    padding: 10px;
+    color: #b3b3b3;
+    text-align: center;
+}
+
+nav a{
+    color: #b3b3b3;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: #1db954;
+}
+
