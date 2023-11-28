@@ -3,15 +3,12 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Game from './components/Game';
-import SavedSongs from './components/SavedSongs';
+import History from './components/History';
 import { Profile } from './components/Profile';
 
 function App() {
 
     return (
-//      <div className="App">
-//        <Login />
-//      </div>
         <div className="App">
               <BrowserRouter>
                 <Switch>
@@ -25,7 +22,7 @@ function App() {
                     <Profile />
                   </Route>
                   <Route path="/history">
-                    <SavedSongs />
+                    <History />
                   </Route>
                 </Switch>
               </BrowserRouter>

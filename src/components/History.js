@@ -3,11 +3,11 @@ import React from 'react';
 
 
 function History(props) {
-    const headers = ['Title', 'Artist', 'length', 'Album', 'Year'];  
+    const headers = ['Title', 'Artist', 'Length', 'Album', 'Year'];
     return(
         <div> 
-            <h3>Your saved Songs</h3>        
-            <table id="history" > 
+            <h3>Your Saved Songs</h3>
+            <table id="library" >
                 <thead>
                 <tr>
                     {headers.map((s, idx) => (<th key={idx}>{s}</th>))}
@@ -16,12 +16,11 @@ function History(props) {
                 <tbody>
                 {props.data.map((row,idx) => (
                         <tr key={idx}>
-                        <td>{row.factorA}</td>
-                        <td>{row.factorB}</td>
-                        <td>{row.attempt}</td>
-                        <td>{row.answer}</td>
-                        {(row.correct)? (<td>true</td>) :
-                                    (<td className="incorrect">false</td>)} 
+                        <td>{row.title}</td>
+                        <td>{row.artists}</td>
+                        <td>{row.length}</td>
+                        <td>{row.album}</td>
+                        <td>{row.year}</td>
                         </tr>
                     ))}
                 </tbody>
