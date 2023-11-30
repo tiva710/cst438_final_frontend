@@ -1,54 +1,102 @@
 import React, {useState} from 'react';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import './Problem.css';
 
-function Problem(props) {
- 
-  const [attempt, setAttempt] = useState('');
-  const [message, setMessage] = useState('');
+function Problem({ onSearch }){
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleSearch = () => {
+          onSearch(searchQuery); // Passes the search query to the parent component
+          // searchPlaylists(searchQuery); // This should be triggered when a search is performed
 
-  const onChangeAttempt = (e) => {
-    console.log("onChangeAttempt "+e.target.value);
-    setAttempt(e.target.value);
-  }
+      };
+      const Authorize = () => {
+          var client_id = '057918093e824c6ab61ae3d1383d439c';
+          var client_secret = 'a714f77626f94e4fb8bb1dc0ad0e9f5b';
+
+          const authOptions = {
+              method: 'POST',
+              headers: {
+                  'Authorization': 'Basic ' + btoa(client_id + ':' + client_secret),
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: 'grant_type=client_credentials'
+          };
+           console.log("fetching...");
 
 
+          fetch('https://accounts.spotify.com/api/token', authOptions)
+              .then((response) => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.json(); // Corrected this line
+              })
+              .then((data) => {
+                  console.log("Access Token:", data.access_token);
+                  sessionStorage.setItem("accessToken", data.access_token);
+              })
+              .catch((error) => {
+                  console.error('There has been a problem with your fetch operation:', error);
+              });
 
-  const handleSubmit = (e) => {
-    if (/^[0-9]+$/.test(attempt)) {
-      props.postAttempt(attempt);
-    } else {
-      setMessage("Your answer is not a valid integer.");
-    }
-  }
 
-  const handleNext = (e) => {
-    props.fetchProblem();
-  }
+          // request.post(authOptions, function(error, response, body) {
+          //     if (!error && response.statusCode === 200) {
+          //         var token = body.access_token;
+          //     }
+          // });
 
-    const msg = (props.message!=='') ? props.message : message;
-    const {a, b} = props.factors;
+      }
+      // Custom Styles
+      const cardStyle = {
+          backgroundColor: '#121212', // Spotify dark theme
+          color: '#ffffff',
+          width: '100vh',
+      };
+
+      const buttonStyle = {
+          backgroundColor: '#1db954', // Spotify green
+          borderColor: '#1db954',
+      };
+
+      const formControlStyle = {
+          backgroundColor: '#282828', // Slightly lighter black for input
+          color: '#ffffff',
+          border: '1px solid #333333', // Darker border for contrast
+      };
+
+
     return (
       <div className="App">
        <h3>Search Spotify</h3>
+       <Container className="container">
+            <Row>
+                <Col>
+                    <Card style= {cardStyle} className="p-4">
+                        <Card.Body>
+                            <Form>
+                                <Form.Group controlId="formSearch">
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter music genres (e.g., country, metal, hip hop)"
+                                        style={formControlStyle}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Button style={buttonStyle} onClick={handleSearch}>
+                                    Search
+                                </Button>
 
-      <table>
-        <tbody>
-        <tr><td>
-       <label htmlFor="attempt"></label>
-       </td><td>
-       <input placeholder= "Search for a song, artist, or genre!" type="text" name="attempt" value={attempt} 
-              onChange={onChangeAttempt} />
-       </td></tr>
- 
-       </tbody>
-       </table>
-       
-       <br/>
-       <button className="submit" onClick={handleSubmit}>Search</button>
-       <br/>
-       
-       <h3 id="message">{msg}</h3>
-      </div>
-    )
+                                <Button style={buttonStyle} onClick={Authorize}>
+                                    Authorize
+                                </Button>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+       </Container>
+       </div>
+    );
 }
 export default Problem;

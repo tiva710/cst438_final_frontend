@@ -1,6 +1,7 @@
-import {Link} from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import History from './History';
+import Login from './Login';
 import './Profile.css';
 
 const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
@@ -22,6 +23,8 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
 export const Profile = () => {
     //Need to fetch user data including username and profile pic
     const [showModal, setShowModal] = useState(false);
+    const history = useHistory();
+
 
       const handleLogout = () => {
         // Show the modal when the user clicks on logout
@@ -31,7 +34,9 @@ export const Profile = () => {
       const handleConfirmLogout = () => {
         // Handle the actual logout logic here
         // For now, close the modal
+        history.push('/');
         setShowModal(false);
+
       };
 
       const handleCloseModal = () => {
@@ -44,8 +49,7 @@ export const Profile = () => {
             alt = "Profile Pic"
             className="profile-picture"/>
 
-            <h2> Username </h2>
-
+            <h2> Admin </h2>
             <button className = "logoutBtn"onClick={handleLogout}>Logout</button>
 
                   <LogoutModal
