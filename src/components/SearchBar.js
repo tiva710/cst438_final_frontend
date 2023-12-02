@@ -51,50 +51,65 @@ const SearchBar = ({ onSearch }) => {
     const cardStyle = {
         backgroundColor: '#121212', // Spotify dark theme
         color: '#ffffff',
-        width: '100vh',
     };
 
     const buttonStyle = {
         backgroundColor: '#1db954', // Spotify green
         borderColor: '#1db954',
+        border: '1px solid #333333',
+        borderRadius: '20px',
+        height: '40px', 
+        width: '75px',
     };
 
     const formControlStyle = {
-        backgroundColor: '#282828', // Slightly lighter black for input
+        // backgroundColor: '#282828', // Slightly lighter black for input
+        // color: '#ffffff',
+        // border: '1px solid #333333', // Darker border for contrast
+        backgroundColor: '#282828',
         color: '#ffffff',
-        border: '1px solid #333333', // Darker border for contrast
+        border: '1px solid #333333',
+        borderRadius: '20px', // Adjust the border-radius for rounded corners
+        height: '40px', // Adjust the height for a bigger input field
+        width: '300px',
+        marginRight: '10px',
+        paddingLeft: '15px',
     };
 
     return (
-        <Container className="d-flex justify-content-center align-items-center my-4">
-            <Row>
-                <Col>
-                    <Card style={cardStyle} className="p-4">
-                        <Card.Body>
-                            <Card.Title>Search</Card.Title>
-                            <Form>
-                                <Form.Group controlId="formSearch">
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Enter music genres (e.g., country, metal, hip hop)"
-                                        style={formControlStyle}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                    />
-                                </Form.Group>
-                                <Button style={buttonStyle} onClick={handleSearch}>
-                                    Search
-                                </Button>
-
-                                <Button style={buttonStyle} onClick={Authorize}>
-                                    Authorize
-                                </Button>
-                            </Form>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
-    );
+        <div className="d-flex justify-content-center align-items-center my-4">
+      <Row>
+        <Col>
+          <div style={cardStyle}>
+            <div>
+              <h2>Search</h2>
+              <Form>
+                <Form.Group controlId="formSearch">
+                  <Form.Control
+                    type="text"
+                    placeholder= "     Enter song title "
+                    style={formControlStyle}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                    <Button style={buttonStyle} onClick={handleSearch}>
+                    Search
+                    </Button>
+                </Form.Group>
+      
+                <br></br>
+                <br></br>
+                <Button style={buttonStyle} onClick={Authorize}>
+                  Authorize
+                </Button>
+                <br></br>
+                <br></br>
+              </Form>
+            </div>
+          </div>
+        </Col>
+      </Row>
+    </div>
+  );
 };
 
 export default SearchBar;

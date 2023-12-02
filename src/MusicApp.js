@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
-import PlaylistDisplay from './components/PlaylistDisplay';
+import SearchResults from './components/SearchResults';
 
 const MusicApp = () => {
     const [searchResults, setSearchResults] = useState([]);
@@ -61,10 +61,10 @@ const MusicApp = () => {
     // );
 
     return (
-        <div className="text-center p-4" style={{ backgroundColor: '#121212', color: '#ffffff' }}> {/* Spotify dark theme */}
-            <h1 style={{ color: '#1db954' }}>Music Playlist Search</h1> {/* Spotify green for the title */}
+        <div>
+            <h1 >Song Search</h1>
             <SearchBar onSearch={searchPlaylists} />
-            <PlaylistDisplay playlists={searchResults} isVisible={isPlaylistVisible} />
+            <SearchResults playlists={searchResults} isVisible={isPlaylistVisible} />
         </div>
     );
 };

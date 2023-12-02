@@ -1,8 +1,8 @@
 import './App.css';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import PlaylistDisplay from './components/PlaylistDisplay';
-import SearchBar from './components/SearchBar';
+import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import MusicApp from './MusicApp';
+import { SavedSongs } from './components/SavedSongs';
+import { Profile } from './components/Profile';
 
 const base_uri = 'http://localhost:3000';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
@@ -50,10 +50,32 @@ function App() {
     // console.log(spotify_api_client);
 
     return (
-        <div>
-            <MusicApp />
-        </div>
+        // <div>
+        //     <MusicApp />
+        // </div>
+      <Router>
+      <div className="App">
+        <nav>
+        <a href="/MusicApp">Search</a>
+        <a href="/SavedSongs">Saved Songs</a>
+        <a href="/Profile">Profile</a>
+        {/* You can add more navigation links or components here */}
+      </nav> 
+
+      <main>
+          <Switch>
+            <Route path="/MusicApp" component={MusicApp} />
+            <Route path="/Profile" component={Profile} />
+            <Route path="/SavedSongs" component={SavedSongs} />
+            {/* You can add more routes for other components */}
+            {/* The default route renders PlaylistDisplay */}
+            <Route path="/" component={MusicApp} />
+          </Switch>
+        </main>
+      </div>
+      </Router>
     );
+    
 }
 
 
