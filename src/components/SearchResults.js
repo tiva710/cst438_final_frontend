@@ -45,13 +45,14 @@ const SearchResults = ({ playlists, isVisible }) => {
                                         <td>{playlist.name}</td>
                                         <td>{playlist.album.artists[0].name}</td>
                                         <td>
-                                            <Button
+                                            <Button id = "addBtn"
                                             style={buttonStyle}
                                             variant="outline-light"
                                             onClick={() =>
                                                 console.log(
                                                 `Clicked plus button for playlist: ${playlist.name}`
                                                 )
+
                                             }
                                             >
                                             +

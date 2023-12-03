@@ -29,18 +29,18 @@ html {
     }
   
   #library tr {
-    background-color: #535353;
+    background-color: #121212;
   }
   
   #library tr:hover {
-    background-color: #B3B3B3;
+    background-color: #535353;
   }
   
   #library th {
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: left;
-      background-color: #04AA6D;
+      background-color: #1db954;
       color: white;
   }
   
