@@ -1,7 +1,7 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MusicApp from './MusicApp';
-import { SavedSongs } from './components/SavedSongs';
+import { SavedSongs } from './components/SavedSongs'
 import { Profile } from './components/Profile';
 
 const base_uri = 'http://localhost:3000';
@@ -59,7 +59,6 @@ function App() {
         <a href="/MusicApp">Search</a>
         <a href="/SavedSongs">Saved Songs</a>
         <a href="/Profile">Profile</a>
-        {/* You can add more navigation links or components here */}
       </nav> 
 
       <main>
@@ -67,8 +66,6 @@ function App() {
             <Route path="/MusicApp" component={MusicApp} />
             <Route path="/Profile" component={Profile} />
             <Route path="/SavedSongs" component={SavedSongs} />
-            {/* You can add more routes for other components */}
-            {/* The default route renders PlaylistDisplay */}
             <Route path="/" component={MusicApp} />
           </Switch>
         </main>
