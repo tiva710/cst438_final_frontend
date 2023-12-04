@@ -3,6 +3,7 @@ import './SavedSongs.css';
 import SearchResults from './SearchResults';
 
 export const SavedSongs = (props) => {
+    console.log('SavedSongs data:', props.data);
     const { name, artist } = props;
     const headers = ['Title', 'Artist', 'Length', 'Album', 'Year'];
 
