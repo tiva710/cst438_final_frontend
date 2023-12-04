@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import './SearchResults.css'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
