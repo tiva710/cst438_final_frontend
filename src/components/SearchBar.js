@@ -85,13 +85,13 @@ const SearchBar = ({ onSearch }) => {
               <h2>Search</h2>
               <Form>
                 <Form.Group controlId="formSearch">
-                  <Form.Control
+                  <Form.Control id="searchBar"
                     type="text"
                     placeholder= "     Enter song title "
                     style={formControlStyle}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                    <Button style={buttonStyle} onClick={handleSearch}>
+                    <Button id="submit" style={buttonStyle} onClick={handleSearch}>
                     Search
                     </Button>
                 </Form.Group>
