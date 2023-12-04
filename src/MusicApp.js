@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
-import PlaylistDisplay from './components/PlaylistDisplay';
+import SearchResults from './components/SearchResults';
 
 const MusicApp = () => {
     const [searchResults, setSearchResults] = useState([]);
@@ -20,6 +20,7 @@ const MusicApp = () => {
                 'Authorization': `Bearer ${accessToken}`
             });
 
+            console.log("Sending request to backend with genre:", genres);
             const response = await fetch(`http://localhost:8080/api/search/${genres}`, {
                 method: 'GET',
                 headers: headers
@@ -29,19 +30,41 @@ const MusicApp = () => {
                 throw new Error('Search request failed');
             }
             const data = await response.json();
-            setSearchResults(data); // Update the state with the received data
-            setPlaylistVisibility(true); // Show the playlist display
+            console.log("Response from backend:", data); // Log the JSON response
+            setSearchResults(data);
+            setPlaylistVisibility(true);
         } catch (error) {
             console.error('Error during search:', error);
         }
     };
-
+    // const renderSearchResults = () => {
+    //     if (!isPlaylistVisible) return null;
+    //
+    //     return (
+    //         <div>
+    //             {searchResults.map((track, index) => (
+    //                 <div key={index}>
+    //                     <p>Track Name: {track.name}</p>
+    //                     {/* Display other track details as needed */}
+    //                 </div>
+    //             ))}
+    //         </div>
+    //     );
+    // };
+    //
+    // return (
+    //     <div className="text-center p-4" style={{ backgroundColor: '#121212', color: '#ffffff' }}>
+    //         <h1 style={{ color: '#1db954' }}>Music Playlist Search</h1>
+    //         <SearchBar onSearch={searchPlaylists} />
+    //         {renderSearchResults()}
+    //     </div>
+    // );
 
     return (
-        <div className="text-center p-4" style={{ backgroundColor: '#121212', color: '#ffffff' }}> {/* Spotify dark theme */}
-            <h1 style={{ color: '#1db954' }}>Music Playlist Search</h1> {/* Spotify green for the title */}
+        <div>
+            <h1 >Song Search</h1>
             <SearchBar onSearch={searchPlaylists} />
-            <PlaylistDisplay playlists={searchResults} isVisible={isPlaylistVisible} />
+            <SearchResults playlists={searchResults} isVisible={isPlaylistVisible} />
         </div>
     );
 };
