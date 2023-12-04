@@ -5,6 +5,16 @@ import SearchResults from './components/SearchResults';
 const MusicApp = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isPlaylistVisible, setPlaylistVisibility] = useState(false);
+    const [savedSongs, setSavedSongs] = useState([]);
+
+
+
+    const addToSavedSongs = (song2save) => {
+    //checking if the song is already saved
+        if(!savedSongs.some((savedSong) => savedSong.id === song2save.id)){
+            setSavedSongs((prevSavedSongs) => [...prevSavedSongs, song2save]);
+        }
+    }
 
     const searchPlaylists = async (genres) => {
 // Retrieve the access token from sessionStorage
@@ -59,13 +69,24 @@ const MusicApp = () => {
     //         {renderSearchResults()}
     //     </div>
     // );
-
+    console.log('Saved Songs:', savedSongs);
     return (
-        <div>
-            <h1 >Song Search</h1>
-            <SearchBar onSearch={searchPlaylists} />
-            <SearchResults playlists={searchResults} isVisible={isPlaylistVisible} />
-        </div>
+       <div>
+        <Route path = "/MusicApp" exact>
+            <div>
+                <h1 >Song Search</h1>
+                <SearchBar onSearch={searchPlaylists} />
+                <SearchResults
+                    playlists={searchResults}
+                    isVisible={isPlaylistVisible}
+                    addToSavedSongs={addToSavedSongs}
+                />
+            </div>
+        </Route>
+        <Route path="/SavedSongs" element={<SavedSongs data={savedSongs} />}>
+            <SavedSongs data={savedSongs} />
+        </Route>
+    </div>
     );
 };
 
