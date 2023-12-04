@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
+import { SavedSongs } from './components/SavedSongs';
 
 const MusicApp = () => {
     const [searchResults, setSearchResults] = useState([]);
