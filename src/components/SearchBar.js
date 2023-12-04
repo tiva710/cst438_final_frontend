@@ -98,7 +98,7 @@ const SearchBar = ({ onSearch }) => {
       
                 <br></br>
                 <br></br>
-                <Button style={buttonStyle} onClick={Authorize}>
+                <Button id="authorize" style={buttonStyle} onClick={Authorize}>
                   Authorize
                 </Button>
                 <br></br>
