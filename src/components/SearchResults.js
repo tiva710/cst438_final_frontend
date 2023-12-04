@@ -2,7 +2,9 @@ import React from 'react';
 import './SearchResults.css'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-const SearchResults = ({ playlists, isVisible }) => {
+const SearchResults = ({ playlists, isVisible, addToSavedSongs }) => {
+    const [song2save, setSong2save] = useState(null);
+
     if (!isVisible) {
         return null;
     }
@@ -48,12 +50,22 @@ const SearchResults = ({ playlists, isVisible }) => {
                                             <Button id = "addBtn"
                                             style={buttonStyle}
                                             variant="outline-light"
-                                            onClick={() =>
+                                            onClick={() => {
+                                                 const updatedSong2save = ({
+                                                    id: playlist.id,
+                                                    title: playlist.name,
+                                                    artists: [playlist.album.artists[0].name],
+                                                    length: playlist.length,
+                                                    album: playlist.album,
+                                                    year: playlist.year
+                                                });
+                                                setSong2save(updatedSong2save);
+                                                addToSavedSongs(updatedSong2save);
                                                 console.log(
                                                 `Clicked plus button for playlist: ${playlist.name}`
                                                 )
 
-                                            }
+                                            }}
                                             >
                                             +
                                             </Button>
