@@ -13,11 +13,13 @@ const SearchBar = ({ onSearch }) => {
         var client_id = '057918093e824c6ab61ae3d1383d439c';
         var client_secret = 'a714f77626f94e4fb8bb1dc0ad0e9f5b';
 
+        const token = sessionStorage.getItem("jwt");
         const authOptions = {
             method: 'POST',
             headers: {
                 'Authorization': 'Basic ' + btoa(client_id + ':' + client_secret),
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': token 
             },
             body: 'grant_type=client_credentials'
         };
