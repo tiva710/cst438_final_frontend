@@ -26,7 +26,7 @@ const MusicApp = () => {
             const response = await fetch(`http://localhost:8082/api/search/${genres}`, {
                 method: 'GET',
                 headers: {
-                    //'Authorization': token ,
+                    'Authorization': token ,
                     'Authorization': `Bearer ${token}`,
                     'Accept': 'application/json'
                 }
