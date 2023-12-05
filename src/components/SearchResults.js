@@ -23,6 +23,20 @@ const SearchResults = ({ playlists, isVisible, addToSavedSongs }) => {
         marginBottom: '10px',
     };
 
+    const convertDurationToMinutes = (durationInMilliseconds) => {
+        // Convert milliseconds to minutes
+        const durationInMinutes = durationInMilliseconds / 60000;
+      
+        // Get whole minutes and remaining seconds
+        const minutes = Math.floor(durationInMinutes);
+        const seconds = Math.floor((durationInMinutes % 1) * 60);
+      
+        // Format the result as a string (optional)
+        const formattedDuration = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      
+        return formattedDuration;
+      };
+
 
     return (
         <Container className="mt-4 d-flex align-items-center">
@@ -36,6 +50,7 @@ const SearchResults = ({ playlists, isVisible, addToSavedSongs }) => {
                                     <tr>
                                         <th>Name</th>
                                         <th>Artist</th>
+                                        <th>Length</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -46,6 +61,7 @@ const SearchResults = ({ playlists, isVisible, addToSavedSongs }) => {
                                         <tr key={playlist.id}>
                                         <td>{playlist.name}</td>
                                         <td>{playlist.album.artists[0].name}</td>
+                                        <td>{convertDurationToMinutes(playlist.duration_ms)}</td>
                                         <td>
                                             <Button id = "addBtn"
                                             style={buttonStyle}
@@ -55,9 +71,9 @@ const SearchResults = ({ playlists, isVisible, addToSavedSongs }) => {
                                                     id: playlist.id,
                                                     title: playlist.name,
                                                     artists: [playlist.album.artists[0].name],
-                                                    length: playlist.length,
-                                                    album: playlist.album,
-                                                    year: playlist.year
+                                                    // length: playlist.length,
+                                                    // album: playlist.album,
+                                                    // year: playlist.year
                                                 });
                                                 setSong2save(updatedSong2save);
                                                 addToSavedSongs(updatedSong2save);
