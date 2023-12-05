@@ -4,9 +4,9 @@ import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 const SearchBar = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
 
+
     const handleSearch = () => {
-        onSearch(searchQuery); // Passes the search query to the parent component
-        // searchPlaylists(searchQuery); // This should be triggered when a search is performed
+        onSearch(searchQuery); 
 
     };
     const Authorize = () => {
@@ -42,11 +42,7 @@ const SearchBar = ({ onSearch }) => {
             });
 
 
-        // request.post(authOptions, function(error, response, body) {
-        //     if (!error && response.statusCode === 200) {
-        //         var token = body.access_token;
-        //     }
-        // });
+       
 
     }
     // Custom Styles

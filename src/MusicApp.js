@@ -5,6 +5,7 @@ import SearchResults from './components/SearchResults';
 const MusicApp = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isPlaylistVisible, setPlaylistVisibility] = useState(false);
+    const token = sessionStorage.getItem("jwt");
 
     const searchPlaylists = async (genres) => {
 // Retrieve the access token from sessionStorage
@@ -18,17 +19,27 @@ const MusicApp = () => {
             const headers = new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
+                
             });
 
             console.log("Sending request to backend with genre:", genres);
-            const response = await fetch(`http://localhost:8080/api/search/${genres}`, {
+            const response = await fetch(`http://localhost:8082/api/search/${genres}`, {
                 method: 'GET',
-                headers: headers
+                headers: {
+                    //'Authorization': token ,
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json'
+                }
             });
 
             if (!response.ok) {
                 throw new Error('Search request failed');
             }
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                console.error('Unexpected response content type:', contentType);
+                return;
+}
             const data = await response.json();
             console.log("Response from backend:", data); // Log the JSON response
             setSearchResults(data);

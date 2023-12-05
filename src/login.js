@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 //import Profile from './Profile';
 import { BrowserRouter, Switch,Route } from 'react-router-dom'; // Import BrowserRouter
 //import SavedSongs from './SavedSongs';
-import SearchBar from './SearchBar'; 
-import SearchResults from './SearchResults'; 
+import SearchBar from './components/SearchBar'; 
+import SearchResults from './components/SearchResults'; 
+import MusicApp from './MusicApp';
 
 function Login() {
     const[user, setUser] = useState({username:'', password:''});
@@ -14,7 +15,7 @@ function Login() {
     }
 
     const login = () => {
-        fetch('http://localhost:3001/login', {
+        fetch('http://localhost:8082/login', {
             method:'POST',
             headers: {'Content-Type':'application/json' },
             body: JSON.stringify(user)
@@ -29,15 +30,15 @@ function Login() {
         .catch(err => console.log(err));
     }
 
+    
+
     if (isAuthenticated) {
         return  <BrowserRouter>
                  <div>
                    <Switch>
-                     <Route exact path="/" component={SearchBar} />
-                     {/* <Route path="/Profile" component={Profile} /> 
-                     <Route path="/SavedSongs" component={SavedSongs} />  */}
-                     <Route path="/SearchResults" component={SearchResults} />
-                     <Route render={() => <h1>Page not found</h1>} />
+                   <Route path="/MusicApp" component={MusicApp} />
+            
+             <Route path="/" component={MusicApp} />
                    </Switch>
                  </div>
                </BrowserRouter>
@@ -61,6 +62,7 @@ function Login() {
             
             <br/>
             <button id="submit" onClick={login}>Login</button>
+            
                 </div>
         );
     }
