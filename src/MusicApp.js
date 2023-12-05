@@ -16,18 +16,17 @@ const MusicApp = () => {
         }
         console.log("Access Token: ", accessToken);
         try {
-            const headers = new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+            // const headers = new Headers({
+            //     'Content-Type': 'application/json',
+            //     'Authorization': `Bearer ${accessToken}`
                 
-            });
+            // });
 
             console.log("Sending request to backend with genre:", genres);
-            const response = await fetch(`http://localhost:8082/api/search/${genres}`, {
+            const response = await fetch(`http://localhost:8082/api/search/${genres}?Authorization=Bearer ${accessToken}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': token ,
-                    'Authorization': `Bearer ${token}`,
                     'Accept': 'application/json'
                 }
             });
@@ -48,28 +47,7 @@ const MusicApp = () => {
             console.error('Error during search:', error);
         }
     };
-    // const renderSearchResults = () => {
-    //     if (!isPlaylistVisible) return null;
-    //
-    //     return (
-    //         <div>
-    //             {searchResults.map((track, index) => (
-    //                 <div key={index}>
-    //                     <p>Track Name: {track.name}</p>
-    //                     {/* Display other track details as needed */}
-    //                 </div>
-    //             ))}
-    //         </div>
-    //     );
-    // };
-    //
-    // return (
-    //     <div className="text-center p-4" style={{ backgroundColor: '#121212', color: '#ffffff' }}>
-    //         <h1 style={{ color: '#1db954' }}>Music Playlist Search</h1>
-    //         <SearchBar onSearch={searchPlaylists} />
-    //         {renderSearchResults()}
-    //     </div>
-    // );
+
 
     return (
         <div>
