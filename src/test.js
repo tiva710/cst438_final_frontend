@@ -3,7 +3,7 @@ document.getElementById('fetchData').addEventListener('click', () => {
 });
 
 function fetchDataFromServer() {
-    fetch('http://localhost:8080/api/your-endpoint') // Replace with your specific backend endpoint
+    fetch('/api/your-endpoint') // Replace with your specific backend endpoint
         .then(response => response.json())
         .then(data => {
             displayData(data);

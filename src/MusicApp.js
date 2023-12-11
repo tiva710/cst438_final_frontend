@@ -23,7 +23,7 @@ const MusicApp = () => {
             // });
 
             console.log("Sending request to backend with genre:", genres);
-            const response = await fetch(`http://localhost:8082/api/search/${genres}?Authorization=Bearer ${accessToken}`, {
+            const response = await fetch(`/api/search/${genres}?Authorization=Bearer ${accessToken}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': token ,

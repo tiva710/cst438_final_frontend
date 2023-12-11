@@ -15,7 +15,7 @@ function Login() {
     }
 
     const login = () => {
-        fetch('http://localhost:8082/login', {
+        fetch('/login', {
             method:'POST',
             headers: {'Content-Type':'application/json' },
             body: JSON.stringify(user)
